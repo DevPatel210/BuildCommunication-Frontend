@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/DevPatel210/BuildCommunication-Frontend/static/css/main.c5387d81.chunk.css",
-    "main.js": "/DevPatel210/BuildCommunication-Frontend/static/js/main.0e0cd084.chunk.js",
-    "main.js.map": "/DevPatel210/BuildCommunication-Frontend/static/js/main.0e0cd084.chunk.js.map",
-    "runtime-main.js": "/DevPatel210/BuildCommunication-Frontend/static/js/runtime-main.fa975b57.js",
-    "runtime-main.js.map": "/DevPatel210/BuildCommunication-Frontend/static/js/runtime-main.fa975b57.js.map",
-    "static/js/2.8569bd14.chunk.js": "/DevPatel210/BuildCommunication-Frontend/static/js/2.8569bd14.chunk.js",
-    "static/js/2.8569bd14.chunk.js.map": "/DevPatel210/BuildCommunication-Frontend/static/js/2.8569bd14.chunk.js.map",
-    "index.html": "/DevPatel210/BuildCommunication-Frontend/index.html",
-    "static/css/main.c5387d81.chunk.css.map": "/DevPatel210/BuildCommunication-Frontend/static/css/main.c5387d81.chunk.css.map",
-    "static/js/2.8569bd14.chunk.js.LICENSE.txt": "/DevPatel210/BuildCommunication-Frontend/static/js/2.8569bd14.chunk.js.LICENSE.txt",
-    "static/media/Browse_modules.jpg": "/DevPatel210/BuildCommunication-Frontend/static/media/Browse_modules.53e48814.jpg",
-    "static/media/Dev.jpg": "/DevPatel210/BuildCommunication-Frontend/static/media/Dev.18285ef8.jpg",
-    "static/media/Modules.png": "/DevPatel210/BuildCommunication-Frontend/static/media/Modules.1195ccdf.png",
-    "static/media/about_us.jpg": "/DevPatel210/BuildCommunication-Frontend/static/media/about_us.24d3698c.jpg",
-    "static/media/master.css": "/DevPatel210/BuildCommunication-Frontend/static/media/bg.8de6c9d9.png",
-    "static/media/pic-1.png": "/DevPatel210/BuildCommunication-Frontend/static/media/pic-1.5632a661.png",
-    "static/media/poojan.jpg": "/DevPatel210/BuildCommunication-Frontend/static/media/poojan.0a59823a.jpg",
-    "static/media/red-cross.png": "/DevPatel210/BuildCommunication-Frontend/static/media/red-cross.d24ab790.png"
+    "main.css": "/BuildCommunication-Frontend/static/css/main.d70dcf40.chunk.css",
+    "main.js": "/BuildCommunication-Frontend/static/js/main.18165baa.chunk.js",
+    "main.js.map": "/BuildCommunication-Frontend/static/js/main.18165baa.chunk.js.map",
+    "runtime-main.js": "/BuildCommunication-Frontend/static/js/runtime-main.e3298ed3.js",
+    "runtime-main.js.map": "/BuildCommunication-Frontend/static/js/runtime-main.e3298ed3.js.map",
+    "static/js/2.8569bd14.chunk.js": "/BuildCommunication-Frontend/static/js/2.8569bd14.chunk.js",
+    "static/js/2.8569bd14.chunk.js.map": "/BuildCommunication-Frontend/static/js/2.8569bd14.chunk.js.map",
+    "index.html": "/BuildCommunication-Frontend/index.html",
+    "static/css/main.d70dcf40.chunk.css.map": "/BuildCommunication-Frontend/static/css/main.d70dcf40.chunk.css.map",
+    "static/js/2.8569bd14.chunk.js.LICENSE.txt": "/BuildCommunication-Frontend/static/js/2.8569bd14.chunk.js.LICENSE.txt",
+    "static/media/Browse_modules.jpg": "/BuildCommunication-Frontend/static/media/Browse_modules.53e48814.jpg",
+    "static/media/Dev.jpg": "/BuildCommunication-Frontend/static/media/Dev.18285ef8.jpg",
+    "static/media/Modules.png": "/BuildCommunication-Frontend/static/media/Modules.1195ccdf.png",
+    "static/media/about_us.jpg": "/BuildCommunication-Frontend/static/media/about_us.24d3698c.jpg",
+    "static/media/master.css": "/BuildCommunication-Frontend/static/media/bg.8de6c9d9.png",
+    "static/media/pic-1.png": "/BuildCommunication-Frontend/static/media/pic-1.5632a661.png",
+    "static/media/poojan.jpg": "/BuildCommunication-Frontend/static/media/poojan.0a59823a.jpg",
+    "static/media/red-cross.png": "/BuildCommunication-Frontend/static/media/red-cross.d24ab790.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.fa975b57.js",
+    "static/js/runtime-main.e3298ed3.js",
     "static/js/2.8569bd14.chunk.js",
-    "static/css/main.c5387d81.chunk.css",
-    "static/js/main.0e0cd084.chunk.js"
+    "static/css/main.d70dcf40.chunk.css",
+    "static/js/main.18165baa.chunk.js"
   ]
 }

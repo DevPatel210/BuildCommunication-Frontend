@@ -9,6 +9,13 @@ export const getUser = () => {
   else return null;
 };
 
+export const setCookie = (token) => {
+  let date = new Date();
+  date.setTime(date.getTime() + 86400000);
+  document.cookie =
+    "BuildCommunication" + " = " + token + "; expires = " + date.toGMTString();
+};
+
 export const getCookie = (cname) => {
   let name = cname + "=";
   let decodedCookie = decodeURIComponent(document.cookie);

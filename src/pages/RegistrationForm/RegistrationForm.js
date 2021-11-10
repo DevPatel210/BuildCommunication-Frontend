@@ -4,7 +4,7 @@ import { Redirect } from "react-router";
 import "./RegistrationForm.css";
 import { API_BASE_URL, ACCESS_TOKEN_NAME } from "../../apiConstants";
 import { withRouter } from "react-router-dom";
-import { setSpeechRate, setUserSession } from "../../Utils/Common";
+import { setSpeechRate, setUserSession, setCookie } from "../../Utils/Common";
 
 function RegistrationForm(props) {
   const [state, setState] = useState({
@@ -52,6 +52,7 @@ function RegistrationForm(props) {
             console.log(response.data);
             setUserSession(response.data.token, response.data.user);
             setSpeechRate(response.data.user.speech_rate);
+            setCookie(response.data.token);
             redirectToHome();
             props.showError(null);
             console.log(response.data);

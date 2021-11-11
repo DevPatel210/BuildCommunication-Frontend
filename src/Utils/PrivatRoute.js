@@ -8,7 +8,7 @@ const PrivateRoute = ({ component: Component, ...res }) => {
     <Route
       {...res}
       render={(props) => {
-        return (getCookie("BuildCommunication") && isSetToken()) === true ? (
+        return (getCookie("BuildCommunication") && isSetToken()) === false ? (
           <Component />
         ) : (
           <Redirect

@@ -7,7 +7,13 @@ import RegistrationForm from "./pages/RegistrationForm/RegistrationForm";
 import AlertComponent from "./components/AlertComponent/AlertComponent";
 import Dashboard from "./pages/Dashboard/dashboard";
 import Module1 from "./pages/module1";
+import ChWords from "./pages/ch_words";
+import ThWords from "./pages/th_words";
+import IngWords from "./pages/ing_words";
 import Module2 from "./pages/module2";
+import ChWordsi from "./pages/ch_words_i";
+import ThWordsi from "./pages/th_words_i";
+import IngWordsi from "./pages/ing_words_i";
 import { useState } from "react";
 import Module3 from "./pages/module3";
 import Module4 from "./pages/module4";
@@ -35,8 +41,12 @@ function App() {
         </div>
       </div>
       <PrivateRoute exact path="/dashboard" component={Dashboard} />
-      <PrivateRoute exact path="/module1" component={Module1} />
-      <PrivateRoute exact path="/module2" component={Module2} />
+      <PrivateRoute exact path="/chwords" component={ChWords} />
+      <PrivateRoute exact path="/thwords" component={ThWords} />
+      <PrivateRoute exact path="/ingwords" component={IngWords} />
+      <PrivateRoute exact path="/chwordsi" component={ChWordsi} />
+      <PrivateRoute exact path="/thwordsi" component={ThWordsi} />
+      <PrivateRoute exact path="/ingwordsi" component={IngWordsi} />
       <PrivateRoute exact path="/module3" component={Module3} />
       <PrivateRoute exact path="/module4" component={Module4} />
       <PrivateRoute exact path="/profile" component={UpdateUser} />

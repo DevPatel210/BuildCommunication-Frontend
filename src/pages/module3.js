@@ -101,6 +101,7 @@ function Module3() {
       .post(API_BASE_URL + "/module3/score", data)
       .then(function (response) {
         console.log(response.data);
+        localStorage.setItem("userData", JSON.stringify(response.data));
         console.log("Score submitted");
         console.log(currscore);
         setScore(currscore);
@@ -119,7 +120,7 @@ function Module3() {
         <Sidebar />
         <div className="projects-section">
           <div className="projects-section-header">
-            <p>Module Name</p>
+            <p>Wonder Speak</p>
             <p className="time">
               {questions ? questions.length : 10} Questions
             </p>
@@ -190,7 +191,7 @@ function Module3() {
                           ) : null}
                         </div>
                         <img
-                          src={`http://localhost:5000${question.image}`}
+                          src={API_BASE_URL + question.image}
                           alt={`question ${index}`}
                           style={{ maxWidth: "300px", maxHeight: "500px" }}
                           class="col-sm-4 col-md-6 col-12"

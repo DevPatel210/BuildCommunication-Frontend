@@ -14,7 +14,7 @@ function Sidebar(props) {
   const logout = (e) => {
     e.preventDefault();
     axios
-      .get(`http://localhost:5000/user/logout/${getToken()}`)
+      .get(API_BASE_URL + `/user/logout/${getToken()}`)
       .then((res) => {
         console.log("Logout");
         console.log(res);

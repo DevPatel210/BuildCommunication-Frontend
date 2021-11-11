@@ -94,6 +94,7 @@ function ChWords() {
       .post(API_BASE_URL + "/chwords/score", data)
       .then(function (response) {
         console.log(response.data);
+        localStorage.setItem("userData", JSON.stringify(response.data));
         console.log("Score submitted");
         console.log(currscore);
         setScore(currscore);
@@ -116,7 +117,7 @@ function ChWords() {
 
         <div className="projects-section">
           <div className="projects-section-header">
-            <p>ch words</p>
+            <p>'ch' words Level 2</p>
             <p className="time">
               {questions ? questions.length : 10} Questions
             </p>

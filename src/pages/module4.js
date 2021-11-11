@@ -13,7 +13,7 @@ import { getSpeechRate } from "../Utils/Common";
 function Module4() {
   const colors = ["#fee4cb", "#e9e7fd", "#ffd3e2", "#c8f7dc", "#d5deff"];
   const synthRef = useRef(window.speechSynthesis);
-  const [comprehension, setComprehension] = useState();
+  const [comprehensions, setComprehension] = useState();
   const [score, setScore] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const [scoreMap, setscoreMap] = useState(new Map());
@@ -21,8 +21,8 @@ function Module4() {
     axios
       .get(API_BASE_URL + "/module4/get")
       .then((res) => {
-        console.log(res.data[0]);
-        setComprehension(res.data[0]);
+        console.log(res.data);
+        setComprehension(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -43,24 +43,6 @@ function Module4() {
     if (text !== "") {
       // Get speak text
       const speakText = new SpeechSynthesisUtterance(text);
-
-      // Speak error
-      // speakText.onerror = (e) => {
-      //   console.error("Something went wrong");
-      // };
-
-      // Selected voice
-      // const selectedVoice =
-      //   voiceSelect.selectedOptions[0].getAttribute("data-name");
-
-      // Loop through voices
-      // voices.forEach((voice) => {
-      //   if (voice.name === selectedVoice) {
-      //     speakText.voice = voice;
-      //   }
-      // });
-
-      // Set pitch and rate
       const speech_rate = getSpeechRate();
       if (speech_rate) speakText.rate = speech_rate;
       else speakText.rate = "0.5";
@@ -69,17 +51,28 @@ function Module4() {
       synthRef.current.speak(speakText);
     }
   }
+  function stop() {
+    synthRef.current.cancel();
+  }
 
   const submitScore = (e) => {
     e.preventDefault();
     var currscore = 0;
-    for (var i = 0; i < comprehension.questions.length; i++) {
-      if (scoreMap.has(comprehension.questions[i]._id)) {
-        if (
-          scoreMap.get(comprehension.questions[i]._id) ===
-          comprehension.questions[i].options[comprehension.questions[i].answer]
-        )
-          currscore++;
+    console.log(comprehensions[0]);
+    console.log(comprehensions[1]);
+    console.log(comprehensions.length);
+    for (var i = 0; i < comprehensions.length; i++) {
+      for (var j = 0; j < comprehensions[i].questions.length; j++) {
+        console.log(comprehensions[i].questions[j]);
+        if (scoreMap.has(comprehensions[i].questions[j]._id)) {
+          if (
+            scoreMap.get(comprehensions[i].questions[j]._id) ===
+            comprehensions[i].questions[j].options[
+              comprehensions[i].questions[j].answer
+            ]
+          )
+            currscore++;
+        }
       }
     }
 
@@ -94,6 +87,7 @@ function Module4() {
       .post(API_BASE_URL + "/module4/score", data)
       .then(function (response) {
         console.log(response.data);
+        localStorage.setItem("userData", JSON.stringify(response.data));
         console.log("Score submitted");
         console.log(currscore);
         setScore(currscore);
@@ -113,103 +107,123 @@ function Module4() {
       <Header />
       <div className="app-content">
         <Sidebar />
-
         <div className="projects-section">
           <div className="projects-section-header">
-            <p>Module Name</p>
+            <p>Comprehension</p>
             <p className="time">
-              {comprehension ? comprehension.questions.length : 10} Questions
+              {comprehensions ? comprehensions.length : 10} Comprehensions
             </p>
           </div>
-
-          <div className="project-boxes jsListView">
-            <div className="project-box-wrapper">
-              <div
-                style={{
-                  backgroundColor: "#dbf6fd",
-                  borderRadius: "35px",
-                  padding: "20px",
-                }}
-              >
-                <div style={{ fontSize: "120%" }}>
-                  {comprehension ? comprehension.comprehension : null}
-                </div>
-
-                <Button
-                  color="primary"
-                  variant="contained"
-                  endIcon={<GraphicEqRoundedIcon />}
-                  style={{
-                    maxWidth: "100px",
-                    alignSelf: "center",
-                    marginTop: "20px",
-                    marginBottom: "20px",
-                  }}
-                  onClick={() =>
-                    speak(comprehension ? comprehension.comprehension : null)
-                  }
-                >
-                  Listen
-                </Button>
-                <br />
-              </div>
-            </div>
-            {comprehension
-              ? comprehension.questions.map((question, index) => (
-                  <div className="project-box-wrapper" key={question._id}>
+          {comprehensions
+            ? comprehensions.map((comprehension) => (
+                <div className="project-boxes jsListView">
+                  <div className="project-box-wrapper">
                     <div
                       style={{
-                        backgroundColor: colors[index % colors.length],
+                        backgroundColor: "#dbf6fd",
                         borderRadius: "35px",
                         padding: "20px",
                       }}
                     >
                       <div style={{ fontSize: "120%" }}>
-                        {index + 1}. {question.question}
+                        {comprehension ? comprehension.comprehension : null}
                       </div>
 
-                      <br />
-                      <div
-                        style={{ fontSize: "110%" }}
-                        onChange={captureAnswer}
+                      <Button
+                        color="primary"
+                        variant="contained"
+                        endIcon={<GraphicEqRoundedIcon />}
+                        style={{
+                          maxWidth: "100px",
+                          alignSelf: "center",
+                          marginTop: "20px",
+                          marginBottom: "20px",
+                        }}
+                        onClick={() =>
+                          speak(
+                            comprehension ? comprehension.comprehension : null
+                          )
+                        }
                       >
-                        {question.options
-                          ? question.options.map((option, index) => (
-                              <div style={{ margin: "10px" }} key={index}>
-                                <input
-                                  type="radio"
-                                  name={question._id}
-                                  value={option}
-                                />
-                                <span
-                                  // htmlFor="question11"
-                                  style={{ marginLeft: "8px" }}
-                                >
-                                  {option}
-                                  {index === question.answer && submitted ? (
-                                    <img
-                                      src={
-                                        require("../images/greentick.png")
-                                          .default
-                                      }
-                                      alt="correct ans"
-                                      style={{
-                                        maxWidth: "17px",
-                                        marginLeft: "12px",
-                                        marginBottom: "8px",
-                                      }}
-                                    />
-                                  ) : null}
-                                </span>
-                              </div>
-                            ))
-                          : "No options available"}
-                      </div>
+                        Listen
+                      </Button>
+                      <Button
+                        color="primary"
+                        variant="contained"
+                        style={{
+                          maxWidth: "100px",
+                          alignSelf: "center",
+                          marginLeft: "5px",
+                          marginTop: "20px",
+                          marginBottom: "20px",
+                        }}
+                        onClick={() => stop()}
+                      >
+                        Stop
+                      </Button>
+                      <br />
                     </div>
                   </div>
-                ))
-              : null}
-          </div>
+                  {comprehension
+                    ? comprehension.questions.map((question, index) => (
+                        <div className="project-box-wrapper" key={question._id}>
+                          <div
+                            style={{
+                              backgroundColor: colors[index % colors.length],
+                              borderRadius: "35px",
+                              padding: "20px",
+                            }}
+                          >
+                            <div style={{ fontSize: "120%" }}>
+                              {index + 1}. {question.question}
+                            </div>
+
+                            <br />
+                            <div
+                              style={{ fontSize: "110%" }}
+                              onChange={captureAnswer}
+                            >
+                              {question.options
+                                ? question.options.map((option, index) => (
+                                    <div style={{ margin: "10px" }} key={index}>
+                                      <input
+                                        type="radio"
+                                        name={question._id}
+                                        value={option}
+                                      />
+                                      <span
+                                        // htmlFor="question11"
+                                        style={{ marginLeft: "8px" }}
+                                      >
+                                        {option}
+                                        {index === question.answer &&
+                                        submitted ? (
+                                          <img
+                                            src={
+                                              require("../images/greentick.png")
+                                                .default
+                                            }
+                                            alt="correct ans"
+                                            style={{
+                                              maxWidth: "17px",
+                                              marginLeft: "12px",
+                                              marginBottom: "8px",
+                                            }}
+                                          />
+                                        ) : null}
+                                      </span>
+                                    </div>
+                                  ))
+                                : "No options available"}
+                            </div>
+                          </div>
+                        </div>
+                      ))
+                    : null}
+                </div>
+              ))
+            : null}
+
           <div style={{ margin: "15px 5px" }}>
             <Button
               variant="contained"
@@ -227,7 +241,7 @@ function Module4() {
                 fontWeight: "bold",
               }}
             >
-              {score}/{comprehension ? comprehension.questions.length : 10}
+              {score}/8
             </span>
           </div>
         </div>

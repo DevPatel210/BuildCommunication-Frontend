@@ -5,12 +5,18 @@ import Header from "../../components/header";
 import Sidebar from "../../components/sidebar";
 import { API_BASE_URL, ACCESS_TOKEN_NAME } from "../../apiConstants";
 import { Link, withRouter } from "react-router-dom";
-import { getUser, removeUserSession } from "../../Utils/Common";
+import { getToken, getUser, removeUserSession } from "../../Utils/Common";
 
 function Dashboard(props) {
   const [data, setData] = useState();
   const fetchData = React.useCallback(() => {
-    setData(getUser());
+    axios
+      .get(API_BASE_URL + "/user", { params: { id: getUser()._id } })
+      .then(function (response) {
+        console.log(response.data);
+        localStorage.setItem("userData", JSON.stringify(response.data));
+        setData(response.data);
+      });
   }, []);
 
   React.useEffect(() => {

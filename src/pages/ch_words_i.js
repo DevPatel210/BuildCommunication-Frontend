@@ -63,6 +63,7 @@ function ChWordsi() {
       const speech_rate = getSpeechRate();
       if (speech_rate) speakText.rate = speech_rate;
       else speakText.rate = "0.5";
+      console.log(speakText);
       speakText.pitch = 1.4;
       // Speak
       synthRef.current.speak(speakText);

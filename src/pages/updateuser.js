@@ -8,7 +8,7 @@ import Header from "../components/header";
 import Sidebar from "../components/sidebar";
 import { API_BASE_URL, ACCESS_TOKEN_NAME } from "../apiConstants";
 import { Link, withRouter } from "react-router-dom";
-import { getSpeechRate, setUserSession } from "../Utils/Common";
+import { getSpeechRate, setSpeechRate, setUserSession } from "../Utils/Common";
 import Slider, { SliderThumb } from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
@@ -96,6 +96,7 @@ function UpdateUser() {
     //     console.log(res.data);
     //     console.log(parseFloat(res.data.speech_rate));
     let userData = getUser();
+    console.log(userData);
     setdata({
       id: userData._id,
       username: userData.name,
@@ -136,14 +137,17 @@ function UpdateUser() {
     axios
       .post(API_BASE_URL + "/user/update", userdata)
       .then(function (res) {
+        console.log(res);
         console.log(res.data);
         setdata({
+          id: res.data._id,
           username: res.data.name,
           email: res.data.email,
           dob: convertISO(res.data.dob),
           speech_rate: parseFloat(res.data.speech_rate),
         });
         localStorage.setItem("userData", JSON.stringify(res.data));
+        setSpeechRate(res.data.speech_rate);
         alert("Data Updated");
       })
       .catch(function (error) {

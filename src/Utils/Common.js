@@ -57,5 +57,7 @@ export const setSpeechRate = (speech_rate) => {
 };
 
 export const getSpeechRate = () => {
-  return localStorage.getItem("speech_rate") ? true : false;
+  return localStorage.getItem("speech_rate")
+    ? localStorage.getItem("speech_rate")
+    : false;
 };
